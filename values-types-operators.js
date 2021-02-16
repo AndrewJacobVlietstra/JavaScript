@@ -13,7 +13,7 @@ console.log(!false);
 console.log(1 + 1 == 2 && 10 * 10 > 50);
 
 console.log(true ? "a":"b");
-console.log(false ? "a":"b");
+console.log(false ? "a":"b"); //ternary operator
 
 console.log(typeof undefined);
 console.log(typeof null);
@@ -68,3 +68,8 @@ let y = 5;
 if (Number.isInteger(y)) {
     console.log(y*y);
 } else {console.log("That's not a number!");}
+
+
+
+console.log(console.log);
+console.log(console.log("Hello") === undefined); //this is so weird lol

@@ -13,7 +13,8 @@ const power = (base, exponent) => { // => means these parameters produce this re
 
 //-------------------------------------------------------------------------------------------
 // These two functions are the same, if the function has only one parameter you can omit (),
-// if the body is a single expression, you can omit {}, and the function will return the result
+// if the body is a single expression, you can omit {} and the return statement, 
+// and the function will return the result automatically
 const square1 = (x) => { return x * x };
 const square2 = x => x * x ;
 

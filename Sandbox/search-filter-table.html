@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+        background-color: #333;
+        color: #fff;
+    }
+
+    #myInput {
+      background-image: url();
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+    }
+
+    #myTable {
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid #ddd;
+      font-size: 18px;
+    }
+
+    #myTable th {
+        color: #333;
+    }
+
+    #myTable th, #myTable td {
+      text-align: left;
+      padding: 12px;
+      border-left: 1px solid #fff;
+
+    }
+
+    #myTable tr {
+      border-bottom: 1px solid #ddd;
+    }
+
+    #myTable tr.header, #myTable tr:hover {
+      background-color: #999;
+    }
+  </style>
+  </head>
+
+
+  <body>
+    
+  <h2>My Customers</h2>
+
+  <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names.." title="Type in a name">
+
+  <table id="myTable">
+    <tr class="header">
+      <th style="width:50%;">Name</th>
+      <th style="width:50%;">Country</th>
+    </tr>
+    <tr>
+      <td>Alfreds Futterkiste</td>
+      <td>Germany</td>
+    </tr>
+    <tr>
+      <td>Berglunds snabbkop</td>
+      <td>Sweden</td>
+    </tr>
+    <tr>
+      <td>Island Trading</td>
+      <td>UK</td>
+    </tr>
+    <tr>
+      <td>Koniglich Essen</td>
+      <td>Germany</td>
+    </tr>
+    <tr>
+      <td>Laughing Bacchus Winecellars</td>
+      <td>Canada</td>
+    </tr>
+    <tr>
+      <td>Magazzini Alimentari Riuniti</td>
+      <td>Italy</td>
+    </tr>
+    <tr>
+      <td>North/South</td>
+      <td>UK</td>
+    </tr>
+    <tr>
+      <td>Paris specialites</td>
+      <td>France</td>
+    </tr>
+  </table>
+
+  <script>
+
+    function searchFunction() {
+        var input, filter, table, tr, td, i, txtValue; // initialize variables to use
+        input = document.getElementById("myInput"); // assign input var to myInput element by its ID, which is the string we type in to search
+        filter = input.value.toUpperCase(); // Make input value uppercase, in this case search not case sensitive
+        table = document.getElementById("myTable"); // Assign table var to table element by ID
+        tr = table.getElementsByTagName("tr"); // assign tr var to tr elements by their html tag name
+        // console.log(input.value);
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0]; //looping through every row on every keystroke, and looking at names which is [0] index of the rows
+            if (td) { // if td exists, which should be true by default if it does, run the block of code. 
+                    //Empty strings are false, while a string with any characters is considered true
+                txtValue = td.textContent || td.innerText; // assign txtValue var to the textContent within each cell of each row to run checks on each value of txtContent
+                if (txtValue.toUpperCase().indexOf(filter) > -1) { //this checks where the index of the filter is in each string, if it exists it will be greater than -1, as indicies start at 0
+                    tr[i].style.display = ""; // so for example if you type "al" the indexOf(filter) on that txtValue will be 0 for Alfreds Futterkiste, as the "al" is at the start of that string
+                }
+                else {
+                    tr[i].style.display = "none"; // if the filter is not found in each of the strings, do not display them
+                }
+            }
+        }
+    }
+  </script>
+
+  </body>
+</html>

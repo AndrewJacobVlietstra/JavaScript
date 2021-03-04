@@ -1,4 +1,7 @@
-var randomLocation = Math.random();
+// Generates a random number, * 5 will make it go as high as 4.99, so we use floor to always make it round down
+// this will ensure anything like 0.129 will become 0, and 4.99 will become 4, so our position start
+// can only be from 0 to 4
+var randomLocation = Math.floor(Math.random() * 5);
 var location1 = randomLocation;
 var location2 = location1 + 1;
 var location3 = location2 + 1;
@@ -33,9 +36,5 @@ while(!isSunk) {//loop condition is true while not sunk, once sunk it'll become 
     } else {
         alert("MISS!");
     }
-
-    
 }
-
-
 

@@ -12,7 +12,7 @@ var costs = [ .25, .27, .25, .25, .25, .25,
               .20, .25, .30, .25, .24, .25,
               .25, .25, .27, .25, .26, .29];
 
-var n = 0; // to iterate through indicies of maxNums
+var n = 0; // to iterate through indicies of maxNums if not using push
 var maxNums = [];
 var maxNum = 0;
 
@@ -46,7 +46,30 @@ function pushMaxValuesToArray(scores, maxNum) {
             // n += 1;
         }
     }
+    return maxNums;
 }
 
 pushMaxValuesToArray(scores, maxNum);
 console.log("Solutions with highest scores: " + maxNums);
+
+
+function getMostCostEffectiveSolution(scores, costs, maxNum) {
+
+    cost = 100;
+    index = 0;
+
+    for (var i = 0; i < scores.length; i++) {
+        if (scores[i] == maxNum) {
+            // console.log(costs[i]);
+            if (cost > costs[i]) {
+                cost = costs[i];
+                index = i;
+            }
+        }
+    }
+    return index;
+
+}
+
+var costEffective = getMostCostEffectiveSolution(scores, costs, maxNum);
+console.log("Solution #" + costEffective + " is the most cost effective! " + "Its cost is " + cost);

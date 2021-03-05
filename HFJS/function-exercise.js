@@ -7,6 +7,8 @@ var centerY = 0;
 var width = 600;
 var height = 400;
 
+var test;
+
 function setUp (width, height) {
     centerX = width / 2;
     centerY = height / 2; //manipulate global variables in this function and use them later on down the file
@@ -31,3 +33,4 @@ var distance = computeDistance(x, y, centerX, centerY);
 
 console.log("Area: " + area);
 console.log("Distance: " + distance);
+console.log(test);

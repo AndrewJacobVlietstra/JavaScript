@@ -29,9 +29,29 @@ console.log(cat.weight);
 loseWeight(cat, 2);
 console.log(cat.weight); // after the loseWeight function is called, the cat object has indeed been reassigned a new weight value
 
-
+// -----------------------------------------------------------------------------------------------------
 
 
 function getSecret(file, secretPassword) {
-    
+    file.opened = file.opened + 1;
+    if (secretPassword == file.password) {
+        return file.contents;
+    } else {
+        return "Invalid password! No Secrets for you!";
+    }
 }
+
+function setSecret(file, secretPassword, secret) {
+    if (secretPassword == file.password) {
+        file.opened = 0;
+        file.contents = secret;
+    }
+}
+
+var superSecretFile = {
+    level: "Classified",
+    opened: 0,
+    password: 123,
+    contents: "Dr. Evel's next meeting is in Detroit."
+};
+

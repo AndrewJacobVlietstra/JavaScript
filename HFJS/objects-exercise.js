@@ -31,7 +31,7 @@ console.log(cat.weight); // after the loseWeight function is called, the cat obj
 
 // -----------------------------------------------------------------------------------------------------
 
-
+// getter function
 function getSecret(file, secretPassword) {
     file.opened = file.opened + 1;
     if (secretPassword == file.password) {
@@ -41,6 +41,7 @@ function getSecret(file, secretPassword) {
     }
 }
 
+// setter function
 function setSecret(file, secretPassword, secret) {
     if (secretPassword == file.password) {
         file.opened = 0;
@@ -48,6 +49,7 @@ function setSecret(file, secretPassword, secret) {
     }
 }
 
+// Secret file object
 var superSecretFile = {
     level: "Classified",
     opened: 0,
@@ -55,3 +57,11 @@ var superSecretFile = {
     contents: "Dr. Evel's next meeting is in Detroit."
 };
 
+// Get the contents of the secret file
+var secret = getSecret(superSecretFile, 123);
+console.log(secret);
+
+// Set the contents of the secret file
+setSecret(superSecretFile, 123, "I reset the secret contents! Muhaha!");
+secret = getSecret(superSecretFile, 123);
+console.log(secret);

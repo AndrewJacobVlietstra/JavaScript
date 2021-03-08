@@ -51,3 +51,24 @@ var chevy = {
 
 chevy.start(); // invoke the start method
 console.log(chevy.drive()); // call the drive method
+
+
+// eightBall object with some methods using "this" keyword
+var eightBall = {
+    index: 0,
+    advice: ["yes", "no", "maybe", "not a chance"],
+    shake: function() {
+
+        this.index = this.index + 1;
+        if(this.index >= this.advice.length) {
+            this.index = 0;
+        }
+    },
+
+    look: function() {
+        return this.advice[this.index];
+    }
+};
+
+eightBall.shake();
+console.log(eightBall.look());

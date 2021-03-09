@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document Object Model</title>
+        <style>
+            body {
+                background-color: #333;
+                color: #fff;
+                font-size: 20px;
+            }
+        </style>
+        <script>
+            // tells program to wait til DOM is fully built before executing code
+            function init() {
+                var planet = document.getElementById("greenplanet");
+                planet.innerHTML = "Red Alert: hit by phaser fire!";
+            }
+            // event handler (callback) will give the init function to the browser (AKA window object) to call when its done loading the page
+            window.onload = init; // not calling function, just assigning function value to window.onload property
+
+        </script>
+    </head>
+
+
+    <body>
+        
+        <p id="greenplanet">
+            All is well
+        </p>
+
+        <p id="redplanet">
+            Nothing to report
+        </p>
+
+        <p id="blueplanet">
+            All systems A-OK
+        </p>
+
+        
+    </body>
+
+
+</html>

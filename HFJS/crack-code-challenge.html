@@ -28,10 +28,10 @@
         <p id="code11">The green canary flies at</p>
         <p id="code12">The oyster owns a fine</p>
         <script>
-            var access = document.getElementById("code9"); // grab the html paragraph element, from the document object
+            var access = document.getElementById("code9"); // grab the html paragraph element, from the global document object, access is now a reference variable pointing to the access object
             console.log(access);
-
-            var code = access.innerHTML; // access the inner html of the paragraph
+            
+            var code = access.innerHTML; // access the inner html of the paragraph (the text)
             code = code + " midnight"; // concatenate a string to the string already inside the paragraph
             console.log(code); // display the code to the console
         </script>

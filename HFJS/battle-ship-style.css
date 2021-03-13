@@ -20,19 +20,24 @@ body {
     height: 100%;
 }
 
-.messageArea {
+#messageArea {
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    text-transform: uppercase;
     position: absolute;
-    top: 0px;
+    top: 2rem;
     left: 0px;
     color: rgb(83, 175, 19);
+    transition: all .4s;
 }
 
 .hit {
     background: url('ship.png') no-repeat center center;
+    transition: all .3s;
 }
 
 .miss {
     background: url('miss.png') no-repeat center center;
+    transition: all .25s;
 }
 
 table {
@@ -43,15 +48,16 @@ table {
 }
 
 td {
-    width: 92px;
-    height: 92px;
+    width: 94px;
+    height: 94px;
+    /* border: 1px solid red; */
 }
 
 form {
     position: absolute;
     bottom: -2.4rem;
     right: 0px;
-    padding: 15px;
+    padding: 12px;
     background-color: rgb(83, 175, 19);
 }
 

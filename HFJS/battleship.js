@@ -109,9 +109,9 @@ var model = {
     }
 };
 
-model.fire("10");
-model.fire("20");
-model.fire("30");
-// model.fire("56");
-console.log(model.ships[0].hits);
-console.log(model.shipsSunk);
+var controller = {
+    guesses: 0,
+    processGuess: function(guess) {
+        
+    }
+};

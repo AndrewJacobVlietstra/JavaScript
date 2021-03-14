@@ -112,6 +112,19 @@ var model = {
 var controller = {
     guesses: 0,
     processGuess: function(guess) {
-        
+
+    },
+
+    parseGuess: function(guess) {
+        var alphabet = ["A", "B", "C", "D", "E", "F", "G"];
+
+        if (guess === null || guess.length !== 2) {
+            alert("Oops, that's an incorrect input. Try Again Please!");
+        } else {
+            firstChar = guess.charAt(0);
+            var row = alphabet.indexOf(firstChar);
+        }
     }
 };
+
+console.log(controller.parseGuess("B2"));

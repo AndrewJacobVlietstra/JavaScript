@@ -20,14 +20,24 @@ body {
     height: 100%;
 }
 
-#messageArea {
+#messageArea,
+#messageShipsSunk {
     font-family: 'Franklin Gothic Medium', Arial, sans-serif;
     text-transform: uppercase;
     position: absolute;
-    top: 2rem;
-    left: 0px;
     color: rgb(83, 175, 19);
+    letter-spacing: 3px;
     transition: all .4s;
+}
+
+#messageArea {
+    top: 2.2rem;
+    left: 1rem;
+}
+
+#messageShipsSunk {
+    top: 2.2rem;
+    right: 3rem;
 }
 
 .hit {
@@ -57,12 +67,16 @@ form {
     position: absolute;
     bottom: -2.4rem;
     right: 0px;
-    padding: 12px;
+    padding: 15px;
     background-color: rgb(83, 175, 19);
 }
 
 form input {
     background-color: rgb(152, 207, 113);
     border-color: rgb(83, 175, 19);
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+}
+
+#fireButton {
+    cursor: pointer;
 }

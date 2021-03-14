@@ -46,6 +46,11 @@ var view = {
         messageArea.innerHTML = msg;
     },
 
+    displayShipsSunk: function(message) {
+        var messageShipsSunk = document.getElementById("messageShipsSunk");
+        messageShipsSunk.innerHTML = message;
+    },
+
     displayHit: function(location) {
         var cell = document.getElementById(location);
         cell.setAttribute("class", "hit");
@@ -70,7 +75,7 @@ var model = {
     ships: [
         { locations: ["10", "20", "30"], hits: ["", "", ""] },
         { locations: ["32", "33", "34"], hits: ["", "", ""] },
-        { locations: ["63", "64", "65"], hits: ["", "", "hit"] }
+        { locations: ["63", "64", "65"], hits: ["", "", ""] }
     ],
 
     fire: function(guess) {
@@ -90,6 +95,7 @@ var model = {
                     if (this.isSunk(ship)) {
                         view.displayMessage("You Sank My Battleship!");
                         this.shipsSunk++;
+                        view.displayShipsSunk(`Ships Sunk: ${this.shipsSunk}`);
                     }
                     return true;
                 }
@@ -109,22 +115,70 @@ var model = {
     }
 };
 
+// Controller Object, glues everything together, handles input for the model and view
 var controller = {
     guesses: 0,
+
     processGuess: function(guess) {
+        var location = parseGuess(guess);
+        if (location) {
+            this.guesses++;
+            var hit = model.fire(location);
 
-    },
-
-    parseGuess: function(guess) {
-        var alphabet = ["A", "B", "C", "D", "E", "F", "G"];
-
-        if (guess === null || guess.length !== 2) {
-            alert("Oops, that's an incorrect input. Try Again Please!");
-        } else {
-            firstChar = guess.charAt(0);
-            var row = alphabet.indexOf(firstChar);
+            if (hit && model.shipsSunk === model.numShips) {
+                view.displayMessage(`You sank all my Battleships, in ${this.guesses} guesses!`);
+            }
         }
-    }
+    } 
 };
 
-console.log(controller.parseGuess("B2"));
+// Parsing the Guess to make sure its actually a valid guess
+function parseGuess(guess) {
+    var alphabet = ["A", "B", "C", "D", "E", "F", "G"];
+
+    if (guess === null || guess.length !== 2) {
+        alert("Oops, that's an incorrect input. Try Again Please!");
+    } else {
+        firstChar = guess.charAt(0);
+        var row = alphabet.indexOf(firstChar);
+        var column = guess.charAt(1);
+
+        // Relying on type conversion, convert first char from string to number
+        if (isNaN(row) || isNaN(column)) {
+            alert("Oops, that isn't on the board!");
+        } else if (row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize) {
+            alert("Oops that's off the board!");
+        } else {
+            // Convert row back to number by concatenating it with column string
+            return row + column;
+        }
+    }
+    return null;
+}
+
+function init() {
+    var fireButton = document.getElementById("fireButton");
+    fireButton.onclick = handleFireButton;
+
+    var guessInput = document.getElementById("guessInput");
+    guessInput.onkeypress = handleKeyPress;
+}
+
+function handleFireButton() {
+    var guessInput = document.getElementById("guessInput");
+    var guess = guessInput.value;
+    controller.processGuess(guess);
+
+    guessInput.value = "";
+}
+
+function handleKeyPress(key) {
+    var fireButton = document.getElementById("fireButton")
+    if (key.keyCode === 13) { // 13 is the keycode for return
+        fireButton.click();
+        // return false stops the form from submitting itself, prevents reloading of the page
+        return false;
+    }
+}
+
+window.onload = init;

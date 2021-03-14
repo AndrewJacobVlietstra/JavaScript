@@ -73,9 +73,9 @@ var model = {
     // Instead of managing 3 ship variables, we store all three ships in one array under the ships property
     // We represent the ships as objects at each index of the array, with locations and hits properties
     ships: [
-        { locations: ["10", "20", "30"], hits: ["", "", ""] },
-        { locations: ["32", "33", "34"], hits: ["", "", ""] },
-        { locations: ["63", "64", "65"], hits: ["", "", ""] }
+        { locations: ["0", "0", "0"], hits: ["", "", ""] },
+        { locations: ["0", "0", "0"], hits: ["", "", ""] },
+        { locations: ["0", "0", "0"], hits: ["", "", ""] }
     ],
 
     fire: function(guess) {
@@ -112,8 +112,58 @@ var model = {
             }
         }
         return true;
+    },
+
+    generateShipLocations: function() {
+        var locations;
+        for (var i = 0; i < this.numShips; i++) {
+            do {
+                locations = this.generateShip();
+            } while (this.collision(locations));
+            this.ships[i].locations = locations;
+        }
+    },
+
+    generateShip: function() {
+        var direction = Math.floor(Math.random() * 2); // generates numbers between 0 and 1, for row or column ship
+        var row, col;
+
+        // For horizontal placement starting location
+        if (direction === 1) {
+            row = Math.floor(Math.random() * this.boardSize);
+            col = Math.floor(Math.random() * (this.boardSize - this.shipLength));
+        } 
+        // For Vertical Placement starting location
+        else {
+            row = Math.floor(Math.random() * (this.boardSize - this.shipLength));
+            col = Math.floor(Math.random() * this.boardSize);
+        }
+
+        var newShipLocations = [];
+        for (var i = 0; i < this.shipLength; i++) {
+            if (direction === 1) {
+                newShipLocations.push(row + "" + (col + i));
+            } else {
+                newShipLocations.push((row + i) + "" + col);
+            }
+        }
+        return newShipLocations;
+    },
+
+    collision: function(locations) {
+        for(var i = 0; i < this.numShips; i++) {
+            var ship = model.ships[i];
+
+            for(var j = 0; j < locations.length; j++) {
+                if(ship.locations.indexOf(locations[j]) >= 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 };
+
 
 // Controller Object, glues everything together, handles input for the model and view
 var controller = {
@@ -156,12 +206,15 @@ function parseGuess(guess) {
     return null;
 }
 
+// Handle user input, clicking fire button or hitting return key
 function init() {
     var fireButton = document.getElementById("fireButton");
     fireButton.onclick = handleFireButton;
 
     var guessInput = document.getElementById("guessInput");
     guessInput.onkeypress = handleKeyPress;
+
+    model.generateShipLocations();
 }
 
 function handleFireButton() {
@@ -180,5 +233,6 @@ function handleKeyPress(key) {
         return false;
     }
 }
-
 window.onload = init;
+
+console.log(model.ships);

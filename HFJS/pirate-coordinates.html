@@ -12,10 +12,9 @@
             }
 
             function showCoords(eventObj) {
-                let x, y;
                 var map = document.getElementById("coords");
-                eventObj.clientX = x;
-                eventObj.clientY = y;
+                var x = eventObj.clientX;
+                var y = eventObj.clientY;
                 map.innerHTML = "Map coordinates: " + x + ", " + y;
             }
 
@@ -24,8 +23,14 @@
             }
 
 
-            setTimeout(timerHandler, 5000);
-            setInterval(timerHandler, 5000); // this will repeat forever every 5 seconds
+            setTimeout(timerHandler, 4000);
+            var t = setInterval(timerHandler, 6000); // this will repeat forever every 5 seconds
+
+            clearInterval(t); // this will stop the interval
+
+            // window.onload = function() {
+            //     alert("The page is loaded!");
+            // }
 
         </script>
     </head>

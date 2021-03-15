@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Pirates Booty</title>
+
+        <script>
+            window.onload = init;
+            function init() {
+                var map = document.getElementById("map");
+                map.onmousemove = showCoords;
+            }
+
+            function showCoords(eventObj) {
+                let x, y;
+                var map = document.getElementById("coords");
+                eventObj.clientX = x;
+                eventObj.clientY = y;
+                map.innerHTML = "Map coordinates: " + x + ", " + y;
+            }
+
+            function timerHandler() {
+                console.log("Hey what are you up to?");
+            }
+
+
+            setTimeout(timerHandler, 5000);
+            setInterval(timerHandler, 5000); // this will repeat forever every 5 seconds
+
+        </script>
+    </head>
+
+    <body>
+        <img id="map" src="map.jpg">
+        <p id="coords">Move mouse to find coordinates...</p>
+    </body>
+</html>

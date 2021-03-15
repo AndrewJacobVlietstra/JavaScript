@@ -10,10 +10,10 @@ passed as an argument, and returned from a function.
 
 // Here is a simple data structure, an array holding passenger objects that are on a flight
 var passengers = [
-    {name: "Jane Doloop", paid: true},
-    {name: "Dr. Evil", paid: true},
-    {name: "Sue Property", paid: false},
-    {name: "John Funcall", paid: true} 
+    {name: "Jane Doloop", paid: true, ticket: "coach"},
+    {name: "Dr. Evil", paid: true, ticket: "firstclass"},
+    {name: "Sue Property", paid: false, ticket: "firstclass"},
+    {name: "John Funcall", paid: true, ticket: "coach"}
 ];
 
 function checkNoFlyList(passenger) {
@@ -25,9 +25,37 @@ function checkIfPaid(passenger) {
 }
 
 function printPassenger(passenger) {
-    return console.log(`${passenger.name} Paid: ${passenger.paid}`);
+    return console.log(`${passenger.name}`);
 }
 
+function serveCustomer(passenger) {
+    var getDrinkOrderFunction = createDrinkOrder(passenger);
+
+    getDrinkOrderFunction();
+}
+
+function createDrinkOrder(passenger) {
+    var orderFunction;
+
+    if (passenger.ticket === "firstclass") {
+        orderFunction = function() {
+            console.log("Would you like a cocktail or wine?");
+        }
+    } else {
+        orderFunction = function() {
+            console.log("Your choice is cola or water.");
+        }
+    }
+    return orderFunction;
+}
+
+function servePassengers(passengers) {
+    for (var i = 0; i < passengers.length; i++) {
+        serveCustomer(passengers[i]);
+    }
+}
+
+// Passing a function to a function here
 function processPassengers(passengers, testFunction) {
     for (var i = 0; i < passengers.length; i++) {
         if (testFunction(passengers[i])) {
@@ -48,3 +76,5 @@ if (!allPaid) {
 }
 
 processPassengers(passengers, printPassenger);
+
+servePassengers(passengers);

@@ -13,7 +13,10 @@ var passengers = [
     {name: "Jane Doloop", paid: true, ticket: "coach"},
     {name: "Dr. Evil", paid: true, ticket: "firstclass"},
     {name: "Sue Property", paid: false, ticket: "firstclass"},
-    {name: "John Funcall", paid: true, ticket: "coach"}
+    {name: "John Funcall", paid: false, ticket: "coach"},
+    {name: "Douglas McDougal", paid: true, ticket: "premium"},
+    {name: "Amy Bowtie", paid: true, ticket: "premium"},
+    {name: "Benjamin Benson", paid: true, ticket: "coach"}
 ];
 
 function checkNoFlyList(passenger) {
@@ -34,12 +37,17 @@ function serveCustomer(passenger) {
     getDrinkOrderFunction();
 }
 
+
 function createDrinkOrder(passenger) {
     var orderFunction;
-
+    
     if (passenger.ticket === "firstclass") {
         orderFunction = function() {
             console.log("Would you like a cocktail or wine?");
+        }
+    } else if (passenger.ticket === "premium") {
+        orderFunction = function() {
+            console.log("Your choices are wine in addition to cola or water.");
         }
     } else {
         orderFunction = function() {
@@ -47,6 +55,39 @@ function createDrinkOrder(passenger) {
         }
     }
     return orderFunction;
+}
+
+function prepDinnerOrder(passenger) {
+    var getDinnerOrder = getDinnerOrderFunction(passenger);
+
+    getDinnerOrder();
+}
+
+// Scan through all the passengers and then pass each passenger to the getDinnerOrderFunction
+function prepareDinnerOrders(passengers) {
+    for (var i = 0; i < passengers.length; i++) {
+        prepDinnerOrder(passengers[i]);
+    }
+}
+
+// this function will then determine what their dinner will be based on their ticket
+function getDinnerOrderFunction(passenger) {
+    var dinnerFunction;
+
+    if (passenger.ticket === "firstclass") {
+        dinnerFunction = function() {
+            console.log("Your dinner choices are chicken or pasta.");
+        }
+    } else if (passenger.ticket === "premium") {
+        dinnerFunction = function() {
+            console.log("Your dinner choices are the snack box or cheese plate.");
+        }
+    } else {
+        dinnerFunction = function() {
+            console.log("Your dinner choices are the peanuts or pretzels.");
+        }
+    }
+    return dinnerFunction;
 }
 
 function servePassengers(passengers) {
@@ -78,3 +119,5 @@ if (!allPaid) {
 processPassengers(passengers, printPassenger);
 
 servePassengers(passengers);
+
+prepareDinnerOrders(passengers);

@@ -3,6 +3,8 @@
     once they are defined. We need to consider nested function too, functions defined within
     other functions, because this will affect the scope of those functions.
 
+    In JS only functions can introduce new scope!
+
 */
 
 var migrating = true;

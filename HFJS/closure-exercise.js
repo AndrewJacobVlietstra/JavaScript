@@ -38,9 +38,23 @@ makeTimer("Cookies are done!", 2000);
 
 
 (function(food) {
+
     if (food === "cookies") {
         console.log("More please");
     } else if (food === "cake") {
         console.log("Yum yum");
     }
 })("cookies");
+
+
+// This is same as above function
+var eat = function(food) {
+
+    if (food === "cookies") {
+        console.log("More please");
+    } else if (food === "cake") {
+        console.log("Yum yum");
+    }
+};
+
+(eat)("cookies"); // could also write this as eat("cookies");

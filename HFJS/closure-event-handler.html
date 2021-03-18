@@ -39,6 +39,9 @@
                 var div = document.getElementById("message");
 
                 var button = document.getElementById("clickme");
+
+                // closure is created in this function expression
+                // contains free variables; message, count and div
                 button.onclick = function() {
                     count = count + 1;
                     div.innerHTML = message + count + " times!";

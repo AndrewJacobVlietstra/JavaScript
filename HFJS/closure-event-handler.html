@@ -1,0 +1,51 @@
+<!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Click me!</title>
+        <style>
+            body {
+                background-color: #333;
+                color: #fff;
+                font-size: 24px;
+            }
+            button,
+            div {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: .5rem;
+                transition: all .3s;
+            }
+
+            div {
+                top: 56%;
+            }
+
+        </style>
+
+        
+    </head>
+
+    <body>
+        <button id="clickme">Click me!</button>
+        <div id="message"></div>
+
+        <script>
+            window.onload = function() {
+                var count = 0;
+                var message = "You clicked me ";
+                var div = document.getElementById("message");
+
+                var button = document.getElementById("clickme");
+                button.onclick = function() {
+                    count = count + 1;
+                    div.innerHTML = message + count + " times!";
+                };
+            };
+
+            
+        </script>
+    </body>
+</html>

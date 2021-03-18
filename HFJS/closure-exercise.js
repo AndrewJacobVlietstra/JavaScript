@@ -35,3 +35,12 @@ makeTimer("Cookies are done!", 2000);
 // }
 
 // makeTimer("Cookies are done!", 1000);
+
+
+(function(food) {
+    if (food === "cookies") {
+        console.log("More please");
+    } else if (food === "cake") {
+        console.log("Yum yum");
+    }
+})("cookies");

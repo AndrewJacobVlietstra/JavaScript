@@ -88,3 +88,15 @@ if (chevy instanceof Car) {
     console.log("Congrats you have a Chevy!");
     console.log(chevy instanceof Car);
 }
+
+function dogCatcher(obj) {
+    if(obj instanceof Dog) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// JS's built in date object constructor
+var now = new Date();
+console.log(now);

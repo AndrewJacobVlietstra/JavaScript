@@ -1,9 +1,17 @@
+// Function declaration
 function calcAge1(birthYear) {
-    //test code here
+    return 2030 - birthYear;
 }
 
-let addNum = function(x, y) {
-    return x + y;
+const age1 = calcAge1(1990);
+console.log(age1);
+
+
+
+// Function expression
+const calcAge2 = function calcAge1(birthYear) {
+    return 2030 - birthYear;
 }
 
-console.log(addNum(2, 3));
+const age2 = calcAge2(1990);
+console.log(age2);

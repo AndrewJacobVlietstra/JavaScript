@@ -12,4 +12,5 @@ function fruitProcessor(apples, oranges) {
     return console.log(juice);
 }
 
+// Call the function
 fruitProcessor(2, 3);

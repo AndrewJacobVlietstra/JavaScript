@@ -125,3 +125,23 @@ function capitalizeName(name) {
 }
 
 capitalizeName('jessica ann smith davis');
+
+
+// Padding, makes a string specified length with a specified string of characters
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+').padEnd(30, '+'));
+console.log('Andrew'.padStart(15, '123'));
+
+
+function maskCreditCard(number) {
+    const str = String(number);
+    const last = str.slice(-4);
+    const finalMask = last.padStart(12, '*');
+    console.log(finalMask);
+}
+maskCreditCard(4337876324356547);
+
+
+// Repeat strings
+const message2 = 'Bad weather... All Departures delayed! ';
+console.log(message2.repeat(3));

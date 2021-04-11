@@ -103,3 +103,25 @@ function checkBaggage(items) {
 checkBaggage('I have a laptop, some food and a pocket Knife.');
 checkBaggage('Socks and a camera');
 checkBaggage('Got some snacks and a gun for protection!');
+
+
+// Split, breaks up string using a separator, returns substrings as elements in an array
+console.log('a+very+nice+string'.split('+'));
+console.log('Andrew Boisker'.split(' '));
+
+const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+function capitalizeName(name) {
+    const names = name.split(' ');
+    const namesUpper = [];
+
+    for(let word of names) {
+        namesUpper.push(word[0].toUpperCase() + word.slice(1));
+    }
+    console.log(namesUpper.join(' '));
+}
+
+capitalizeName('jessica ann smith davis');

@@ -61,15 +61,26 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function(movements) {
+  containerMovements.innerHTML = '';
+
+  movements.forEach(function(mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const html = 
+    `<div class="movements__row">
+      <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+      <div class="movements__value">${mov}</div>
+    </div>`;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+}
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -77,7 +88,7 @@ const currencies = new Map([
 
 // SIMPLE ARRAY METHODS LECTURE
 
-// SLice method
+// Slice method
 console.log(`Slice Method`);
 let arr = ['a', 'b', 'c', 'd', 'e'];
 console.log(arr.slice(2));
@@ -130,3 +141,26 @@ movements.forEach(function(value, index, array) {
     console.log(`Movement ${index + 1}: You withdrew ${Math.abs(value)}`);
   }
 });
+
+
+// FOREACH MAPS AND SETS LECTURE
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+console.log(currencies);
+currencies.forEach(function(value, key, map){
+  console.log(`${key}: ${value}`);
+});
+
+
+// Sets, have no keys or index, only values
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+currenciesUnique.forEach(function(value, _, map){ // _ is a throwaway value for argument when its not needed
+  console.log(`${value}: ${value}`);
+});
+
+

@@ -61,6 +61,8 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+
+// CREATING DOM ELEMENTS LECTURE
 const displayMovements = function(movements) {
   containerMovements.innerHTML = '';
 
@@ -163,4 +165,14 @@ currenciesUnique.forEach(function(value, _, map){ // _ is a throwaway value for 
   console.log(`${value}: ${value}`);
 });
 
+
+// DATA TRANSFORMATIONS LECTURE, MAP, FILTER, REDUCE
+const eurToUSD = 1.1;
+
+const movementsUSD = movements.map(function(mov) {
+  return mov * eurToUSD;
+});
+
+console.log(movements);
+console.log(movementsUSD);
 

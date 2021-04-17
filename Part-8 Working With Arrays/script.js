@@ -61,6 +61,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // CREATING DOM ELEMENTS LECTURE
 const displayMovements = function(movements) {
@@ -80,6 +81,13 @@ const displayMovements = function(movements) {
 }
 displayMovements(account1.movements);
 
+function calcDisplayBalance(movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements);
+
 const createUsernames = function(accs) {
   accs.forEach(function(acc) {
     acc.username = acc.owner
@@ -91,7 +99,8 @@ const createUsernames = function(accs) {
 };
 
 createUsernames(accounts);
-console.log(accounts);
+
+
 
 
 /////////////////////////////////////////////////
@@ -136,7 +145,6 @@ console.log(letters.join(' - '));
 
 
 // LOOPING ARRAYS LECTURE: forEach
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 for (const [i, movement] of movements.entries()) {
   if(movement > 0) {
     console.log(`Movement ${i + 1}: You deposited ${movement}`);
@@ -180,7 +188,8 @@ currenciesUnique.forEach(function(value, _, map){ // _ is a throwaway value for 
 });
 
 
-// DATA TRANSFORMATIONS LECTURE, MAP, FILTER, REDUCE
+// DATA TRANSFORMATIONS MAP LECTURE
+console.log('---MAP METHOD---');
 const eurToUSD = 1.1;
 
 const movementsUSD = movements.map(function(mov) {
@@ -198,3 +207,35 @@ const movementsDescriptions = movements.map(function(mov, i) {
 
 });
 console.log(movementsDescriptions);
+
+
+// FILTER METHOD LECTURE
+console.log('---FILTER METHOD---');
+const deposits = movements.filter(function(mov) {
+  return mov > 0;
+});
+console.log(deposits);
+
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(withdrawals);
+
+
+// REDUCE METHOD LECTURE
+console.log('---REDUCE METHOD---');
+// accumulator is the sum of all previous values, current is current value, i is index, arr is the array
+const balance = movements.reduce(function(accumulator, current, i, arr) {
+  return accumulator + current;
+}, 0); // start counting at a value of 0, NOT an index
+
+console.log(balance);
+
+// find max value example
+const max = movements.reduce((acc, mov) => {
+  if(acc > mov) {
+    return acc;
+  }
+  else {
+    return mov;
+  }
+}, movements[0]);
+console.log(max);

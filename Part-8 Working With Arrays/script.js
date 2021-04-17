@@ -80,6 +80,20 @@ const displayMovements = function(movements) {
 }
 displayMovements(account1.movements);
 
+const createUsernames = function(accs) {
+  accs.forEach(function(acc) {
+    acc.username = acc.owner
+    .toLowerCase()
+    .split(' ')
+    .map(name => name[0])
+    .join('');
+  });
+};
+
+createUsernames(accounts);
+console.log(accounts);
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -176,3 +190,11 @@ const movementsUSD = movements.map(function(mov) {
 console.log(movements);
 console.log(movementsUSD);
 
+
+// Putting movements into an array
+const movementsDescriptions = movements.map(function(mov, i) {
+
+  return `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`;
+
+});
+console.log(movementsDescriptions);

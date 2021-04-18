@@ -88,6 +88,10 @@ function calcDisplayBalance(movements) {
 
 calcDisplayBalance(account1.movements);
 
+function calcDisplaySummary(movements) {
+  
+};
+
 const createUsernames = function(accs) {
   accs.forEach(function(acc) {
     acc.username = acc.owner
@@ -239,3 +243,15 @@ const max = movements.reduce((acc, mov) => {
   }
 }, movements[0]);
 console.log(max);
+
+
+// CHAINING METHODS LECTURE
+console.log('--- CHAINING METHODS ---');
+
+// Pipeline
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUSD)
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(totalDepositsUSD);

@@ -33,7 +33,14 @@ const account4 = {
   pin: 4444,
 };
 
-const accounts = [account1, account2, account3, account4];
+const account5 = {
+  owner: 'Andrew Vlietstra',
+  movements: [320, 2000, -700, 500, -150],
+  interestRate: 1.35,
+  pin: 1234,
+};
+
+const accounts = [account1, account2, account3, account4, account5];
 
 // Elements
 const labelWelcome = document.querySelector('.welcome');
@@ -88,26 +95,26 @@ function calcDisplayBalance(movements) {
 
 calcDisplayBalance(account1.movements);
 
-function calcDisplaySummary(movements) {
-  const incomes = movements
+function calcDisplaySummary(account) {
+  const incomes = account.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
     labelSumIn.textContent = `${incomes}€`;
 
-  const outcomes = movements
+  const outcomes = account.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
     labelSumOut.textContent = `${Math.abs(outcomes)}€`;
 
-  const interest = movements
+  const interest = account.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * account.interestRate) / 100)
     .filter((interest) => interest >= 1)
     .reduce((acc, deposit) => acc + deposit, 0);
     labelSumInterest.textContent = `${interest}€`;
 };
 
-calcDisplaySummary(account1.movements);
+// calcDisplaySummary(account1.movements);
 
 const createUsernames = function(accs) {
   accs.forEach(function(acc) {
@@ -120,6 +127,38 @@ const createUsernames = function(accs) {
 };
 
 createUsernames(accounts);
+
+
+// Event Handlers LOGIN LECTURE
+let currentAccount;
+
+btnLogin.addEventListener('click', function(e) {// e is an event object
+  e.preventDefault() // prevent form from submitting, or reloading the page
+  console.log('LOGIN');
+
+  currentAccount = accounts.find(account => account.username === inputLoginUsername.value);
+  console.log(currentAccount);
+
+  if(currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and welcome message
+    labelWelcome.textContent = `Welcome back ${currentAccount.owner.split(' ')[0]}.`;
+    containerApp.style.opacity = 100;
+
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    // Display movements
+    displayMovements(currentAccount.movements);
+
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    // Display summary
+    calcDisplaySummary(currentAccount);
+  }
+});
+
 
 
 

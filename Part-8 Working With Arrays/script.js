@@ -172,7 +172,7 @@ btnClose.addEventListener('click', function(e) {
   
   if(currentAccount?.pin === Number(inputClosePin.value)) {
     removalIndex = accounts.findIndex(user => user === currentAccount);
-    accounts.splice(removalIndex, 1);
+    accounts.splice(removalIndex, 1); // start at the index of the element to be removed, and remove that 1 element
     console.log(accounts);
   }
 });

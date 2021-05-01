@@ -126,6 +126,7 @@ const createUsernames = function(accs) {
 };
 
 createUsernames(accounts);
+console.log(accounts);
 
 function updateUI(account) {
   // Display movements
@@ -163,6 +164,20 @@ btnLogin.addEventListener('click', function(e) {// e is an event object
   }
 });
 
+// Close account event listener
+btnClose.addEventListener('click', function(e) {
+  let removalIndex;
+  e.preventDefault();
+  currentAccount = accounts.find(account => account.username === inputCloseUsername.value);
+  
+  if(currentAccount?.pin === Number(inputClosePin.value)) {
+    removalIndex = accounts.findIndex(user => user === currentAccount);
+    accounts.splice(removalIndex, 1);
+    console.log(accounts);
+  }
+});
+
+// Transfer money event listener
 btnTransfer.addEventListener('click', function(e) {
   e.preventDefault();
   const amount = Number(inputTransferAmount.value);

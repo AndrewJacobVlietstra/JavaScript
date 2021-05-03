@@ -470,3 +470,37 @@ console.log(movements.sort((a, b) => {
   if(a > b) return -1;
   if(a < b) return 1;
 }));
+
+
+// CREATING AND FILLING ARRAYS LECTURE
+console.log('-- CREATING / FILLING ARRAYS --');
+
+console.log([1, 2, 3, 4]);
+console.log(new Array(1, 2, 3, 4));
+
+const x = new Array(7);
+console.log(x);
+
+// You can use fill on an "empty" array, which is just an array of undefined values
+x.fill(1, 1, 6); // fill the array with 1's, starting at index 1, stopping at 6 and not including 6
+console.log(x);
+
+// From method, is a clean way of generating an array and filling it with values 'from' somewhere
+const y = Array.from({length: 7}, () => 1);
+console.log(y);
+
+const z = Array.from({length: 7}, (current, i) => i + 1);
+console.log(z);
+
+// When total balance is clicked, log to the console all of the current account's movements
+labelBalance.addEventListener('click', function() {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    element => Number(element.textContent.replace('€', ''))
+    );
+  console.log(movementsUI);
+
+  // Another way of doing the from method, but with spread operator
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+  console.log(movementsUI2);
+});

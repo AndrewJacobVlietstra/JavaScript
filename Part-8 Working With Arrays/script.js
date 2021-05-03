@@ -71,10 +71,12 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // CREATING DOM ELEMENTS LECTURE
-const displayMovements = function(movements) {
+const displayMovements = function(movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  movements.forEach(function(mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function(mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = 
@@ -211,6 +213,14 @@ btnTransfer.addEventListener('click', function(e) {
     // Update UI
     updateUI(currentAccount);
   }
+});
+
+// Sort button event listener
+let sorted = false;
+btnSort.addEventListener('click', function(e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 
@@ -430,3 +440,33 @@ const overallBalance2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalance2);
+
+
+// SORTING ARRAYS LECTURE
+console.log('--SORTING ARRAYS--');
+
+// Strings
+const owners = ['Jonas', 'Zach', 'Andrew', 'Adam', 'Martha'];
+console.log(owners);
+console.log(owners.sort()); // This will mutate the actual array, so be careful with this method
+
+// Numbers
+console.log(movements);
+// Sort by default, converts everything to strings and sorts alphabetically
+console.log(movements.sort());
+
+// return < 0, A, B
+// return > 0, B, A
+// Ascending order
+// console.log(movements.sort((a, b) => {
+//   if(a > b) return 1;
+//   if(a < b) return -1;
+// }));
+
+console.log(movements.sort((a, b) => a - b));
+
+// Descending order
+console.log(movements.sort((a, b) => {
+  if(a > b) return -1;
+  if(a < b) return 1;
+}));

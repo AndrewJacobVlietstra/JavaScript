@@ -504,3 +504,48 @@ labelBalance.addEventListener('click', function() {
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
   console.log(movementsUI2);
 });
+
+
+// ARRAY METHODS PRACTICE LECTURE
+console.log('-- Array Practice --');
+
+// 1.
+const bankDepositSum = accounts
+  .flatMap(account => account.movements)
+  .filter(mov => mov > 0)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(bankDepositSum);
+
+// 2.
+const numDeposits1000 = accounts
+  .flatMap(account => account.movements)
+  .filter(mov => mov > 1000).length;
+console.log(numDeposits1000);
+
+// 3.
+const sums = accounts
+  .flatMap(account => account.movements)
+  .reduce((sums, cur) => {
+    cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+    return sums;
+  }, {deposits: 0, withdrawals: 0});
+console.log(sums);
+
+
+// 4.
+// this is a nice title -> This Is a Nice Title
+function convertTitleCase(title) {
+  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => exceptions.includes(word) ? word : word[0].toUpperCase() + word.slice(1))
+    .join(' ');
+
+  return titleCase;
+
+};
+
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG title but not too long'));

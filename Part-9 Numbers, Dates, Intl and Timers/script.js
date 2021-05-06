@@ -274,7 +274,7 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
+    setTimeout(function(){// Add movement
     currentAccount.movements.push(amount);
 
     // Add loan date
@@ -282,6 +282,7 @@ btnLoan.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+  }, 3500);
   }
   inputLoanAmount.value = '';
 });
@@ -537,3 +538,33 @@ console.log('US:  ',new Intl.NumberFormat('en-US', options).format(num));
 console.log('GER: ',new Intl.NumberFormat('de-DE', options).format(num));
 console.log('SYR: ',new Intl.NumberFormat('ar-SY', options).format(num));
 console.log(navigator.language, new Intl.NumberFormat(navigator.language, options).format(num));
+
+
+// SET-TIMEOUT AND SET-INTERVAL LECTURE
+console.log('-- SET-TIMEOUT AND SET-INTERVAL LECTURE --');
+
+
+const ingredients = ['broccoli', 'olives', 'mushrooms'];
+
+const pizzaTimer = setTimeout((ing1, ing2, ing3) => {
+  console.log(`Here is your pizza! 🍕 with ${ing1}, ${ing2} and ${ing3}.`);
+}, 3000, ...ingredients);
+
+console.log('Waiting for pizza...');
+
+// if ingredients include spinach, then pizzaTimer wont log to the console
+if(ingredients.includes('spinach')) {
+  clearTimeout(pizzaTimer);
+};
+
+
+// setInterval, will execute the callback function every interval of given time
+const clock = setInterval(() => {
+  const now = new Date();
+  const hour = now.getHours();
+  const min = `${now.getMinutes()}`.padStart(2,0);
+  const sec = now.getSeconds();
+  console.log(`${hour}:${min}:${sec}`);
+}, 1000);
+
+clearInterval(clock); // stops the interval

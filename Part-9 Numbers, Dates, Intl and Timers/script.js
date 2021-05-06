@@ -363,3 +363,37 @@ labelBalance.addEventListener('click', function() {
     }
   });
 });
+
+
+
+// BIGINT LECTURE
+console.log('--BIGINT LECTURE--');
+
+// Biggest integer JS can safely represent
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+
+// Big Int number, you cannot mix bigint numbers with regular numbers, will throw error
+console.log(76348763425876342876435876438576876876n);
+console.log(BigInt(76348763425876342876435876438576876876));
+
+// Operations, Math object operations will not work, will throw conversion error
+console.log(10000n + 10000n);
+console.log(10000n * 10000n);
+const huge = 8973489674587648576n;
+// console.log(Math.sqrt(16n));
+
+
+// Comparisons are fine, just not operations between bigint and normal numbers
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(typeof 20n);
+console.log(typeof 20);
+console.log(20n == 20);
+console.log(20n == '20');
+
+console.log(huge + ' is a really big number!');
+
+// Divisions
+console.log(10n / 3n);
+console.log(10 / 3);

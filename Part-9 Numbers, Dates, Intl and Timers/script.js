@@ -338,3 +338,28 @@ console.log(Math.floor(-23.3));
 // Rounding floating points (decimals)
 console.log((2.7).toFixed(0));
 console.log(+(2.71).toFixed(2));
+
+
+
+// REMAINDER OPERATOR LECTURE
+console.log('--REMAINDER OPERATOR LECTURE--');
+
+console.log(5 % 2); // 2 can go into 5 only two times, 1 is then left over as remainder
+console.log(8 % 3); // 3 can go into 8 only two times, 2 is then left over as remainder
+console.log(10 % 2); // 2 can go into 10 five whole times, there is no remainder leftover
+
+const isEven = n => n % 2 === 0;
+console.log(isEven(8));
+console.log(isEven(5));
+
+labelBalance.addEventListener('click', function() {
+  [...document.querySelectorAll('.movements__row')]
+  .forEach(function(row, i) {
+    if(i % 2 === 0) {
+      row.style.backgroundColor = 'orangered';
+    }
+    if(i % 3 === 0) {
+      row.style.backgroundColor = 'blue';
+    }
+  });
+});

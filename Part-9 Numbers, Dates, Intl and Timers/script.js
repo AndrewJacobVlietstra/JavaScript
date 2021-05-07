@@ -49,7 +49,27 @@ const account2 = {
   locale: 'en-US',
 };
 
-const accounts = [account1, account2];
+const account3 = {
+  owner: 'Andrew Vlietstra',
+  movements: [400, 955.23, 36.5, 35000, -472.21, 721.9, 92.97, -1670],
+  interestRate: 1.15, // %
+  pin: 1234,
+
+  movementsDates: [
+    '2019-11-18T21:31:17.178Z',
+    '2019-12-23T07:42:02.383Z',
+    '2020-01-28T09:15:04.904Z',
+    '2020-04-01T10:17:24.185Z',
+    '2021-04-29T14:09:59.604Z',
+    '2021-05-01T17:01:17.194Z',
+    '2021-05-05T23:36:17.929Z',
+    '2021-05-06T10:51:36.790Z',
+  ],
+  currency: 'CAD',
+  locale: 'en-US', // english-UnitedStates
+};
+
+const accounts = [account1, account2, account3];
 
 /////////////////////////////////////////////////
 // Elements
@@ -184,11 +204,42 @@ const updateUI = function (acc) {
 };
 
 // FAKE ALWAYS LOGGED IN
-let currentAccount;
+let currentAccount, timer;
 // currentAccount = account1;
 // updateUI(currentAccount);
 // containerApp.style.opacity = 100;
 
+
+const startLogOutTimer = function() {
+
+  function tick() {
+    const min = `${Math.trunc(time / 60)}`.padStart(2,0);
+    const sec = `${(time % 60)}`.padStart(2,0);
+
+    // In each call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    
+    // When 0 seconds, stop timer and log out user
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `You have been logged out`;
+      currentAccount = '';
+      containerApp.style.opacity = 0;
+    };
+
+    // Decrement by 1 second
+    time -= 1;
+  };
+
+  // Set time to 5 mins
+  let time = 300;
+
+  // Call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
 
 ///////////////////////////////////////
 // Event handlers
@@ -234,6 +285,12 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    // Start logout timer
+    if(timer) {
+      clearInterval(timer)
+    };
+    timer = startLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -264,6 +321,10 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -282,6 +343,10 @@ btnLoan.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }, 3500);
   }
   inputLoanAmount.value = '';
@@ -534,9 +599,9 @@ const options = {
   useGrouping: true // true by default
 };
 
-console.log('US:  ',new Intl.NumberFormat('en-US', options).format(num));
-console.log('GER: ',new Intl.NumberFormat('de-DE', options).format(num));
-console.log('SYR: ',new Intl.NumberFormat('ar-SY', options).format(num));
+console.log('US:  ', new Intl.NumberFormat('en-US', options).format(num));
+console.log('GER: ', new Intl.NumberFormat('de-DE', options).format(num));
+console.log('SYR: ', new Intl.NumberFormat('ar-SY', options).format(num));
 console.log(navigator.language, new Intl.NumberFormat(navigator.language, options).format(num));
 
 

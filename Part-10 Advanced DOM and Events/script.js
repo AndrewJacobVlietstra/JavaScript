@@ -145,18 +145,50 @@ btnScrollTo.addEventListener('click', function(e){
   document.documentElement.clientWidth
   );
 
-  // Scrolling
+  // Scrolling manual
   // window.scrollTo(
   //   s1coords.left + window.pageXOffset, 
   //   s1coords.top + window.pageYOffset
   // );
   
+  // scrolling old school
   // window.scrollTo({
   //   left: s1coords.left + window.pageXOffset, 
   //   top: s1coords.top + window.pageYOffset,
   //   behavior: 'smooth',
   // });
 
+  // modern way of scrolling
   section1.scrollIntoView({behavior: 'smooth'});
 
+});
+
+
+// Types of events and event handlers lecture
+console.log('Types of events and event handlers lecture');
+
+
+const h1 = document.querySelector('h1');
+
+const alertH1 = function(e){
+  alert('addEventlistener: mouseenter');
+
+  h1.removeEventListener('mouseenter', alertH1);
+};
+
+h1.addEventListener('mouseenter', alertH1);
+
+
+// Event propagation: Bubbling and Capturing Lecture
+console.log('Event propagation: Bubbling and Capturing Lecture');
+
+// rgb(255, 255, 255)
+const randomInt = (min, max) => Math.floor(Math.random()* (max - min + 1) + min);
+
+const randomColor = () => `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+console.log(randomColor());
+
+// in an event handler, "this" refers to what the handler is attached to
+document.querySelector('.nav__link').addEventListener('click', function(e){
+  this.style.backgroundColor = randomColor();
 });

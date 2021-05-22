@@ -29,7 +29,7 @@ btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
   }
@@ -215,3 +215,40 @@ console.log(randomColor());
 document.querySelector('.nav__link').addEventListener('click', function(e){
   this.style.backgroundColor = randomColor();
 });
+
+
+// DOM Traversal Lecture
+console.log('DOM Traversal Lecture');
+
+const h1 = document.querySelector('h1');
+
+
+// Going downwards, selecting child elements
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes); // not used a lot
+console.log(h1.children); // gives a live collection of the html elements
+
+// h1.firstElementChild.style.color = 'white';
+// h1.lastElementChild.style.color = 'orangered';
+
+
+// Going upwards: parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+// closest finds the closest parent element of a selected element
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+
+// Going sideways: siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.parentElement.children);
+
+// Can spread out elements into an array and perform array methods on them, like in this example
+// [...h1.parentElement.children].forEach(function(element) {
+//   if(element !== h1) {
+//     element.style.transform = 'scale(0.5)';
+//   };
+// });

@@ -252,3 +252,42 @@ console.log(h1.parentElement.children);
 //     element.style.transform = 'scale(0.5)';
 //   };
 // });
+
+
+// Build a tabbed component Lecture
+
+console.log('Build a tabbed component Lecture');
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+// The forEach method adding event handlers is bad practice, especially when you have lots of tabs,
+// all the copies of methods will slow down the page
+
+// Instead lets use event delegation, we need to attach the event handler to the common parent
+// of all the elements we're interested in
+
+tabsContainer.addEventListener('click', function(e){
+  const clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
+
+  // Guard clause
+  if(!clicked) return;
+
+  // Active tab
+  if(clicked) {
+    // Hide all tabs
+    tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+    // Show clicked tab
+    clicked.classList.add('operations__tab--active');
+  }
+
+  // Hide all content
+  tabsContent.forEach(content => content.classList.remove('operations__content--active'));
+
+  // Activate Clicked Content Area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});

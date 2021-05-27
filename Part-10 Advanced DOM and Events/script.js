@@ -323,9 +323,9 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 
 
 
-// Stick Navigation, Scroll Event Lecture
+// Sticky Navigation, Scroll Event Lecture
 
-console.log('Stick Navigation, Scroll Event Lecture');
+console.log('Sticky Navigation, Scroll Event Lecture');
 
 // Sticky Navigation
 const initialCoords = section1.getBoundingClientRect();

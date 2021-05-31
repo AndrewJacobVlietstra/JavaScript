@@ -453,12 +453,13 @@ console.log('Building a Slider Component Lecture');
 const slides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
+const dotsContainer = document.querySelector('.dots');
 
 let currentSlide = 0;
 const maxSlide = slides.length;
 
 const slider = document.querySelector('.slider');
-slider.style.transform = 'scale(0.8)';
+// slider.style.transform = 'scale(0.8)';
 slider.style.overflow = 'hidden';
 
 // 0%, 100%, 200%, 300% translated slides
@@ -467,7 +468,8 @@ slider.style.overflow = 'hidden';
 const goToSlide = function(slide) {
   slides.forEach((s, i) => s.style.transform = `translateX(${100 * (i - currentSlide)}%)`);
 };
-goToSlide(0);
+
+
 
 // Next slide
 const nextSlide = function(){
@@ -478,7 +480,9 @@ const nextSlide = function(){
   }
 
   goToSlide(currentSlide);
+  activateDot(currentSlide);
 };
+
 
 // Previous slide
 const previousSlide = function(){
@@ -486,8 +490,60 @@ const previousSlide = function(){
   if(currentSlide < 0) {currentSlide = maxSlide - 1;}
 
   goToSlide(currentSlide);
+  activateDot(currentSlide);
 };
 
 
+
+// Add key listeners for left and right key press scroll functionality
+document.addEventListener('keydown', function(e){
+  // console.log(e);
+  if(e.key === 'ArrowLeft') {previousSlide();}
+  if(e.key === 'ArrowRight') {nextSlide();}
+});
+
+// Add event listeners for left or right arrow button clicks
 btnLeft.addEventListener('click', previousSlide);
 btnRight.addEventListener('click', nextSlide);
+
+
+
+// Create the dots for the slider
+const createDots = function(){
+  slides.forEach(function(s, i) {
+    dotsContainer.insertAdjacentHTML('beforeend',
+    `<button class="dots__dot" data-slide="${i}"></button>`
+    );
+  });
+};
+
+
+
+// Keep track of which slide we're on via the dots
+const activateDot = function(slide){
+  document.querySelectorAll('.dots__dot').forEach((dot, i) => {
+    dot.classList.remove('dots__dot--active');
+  });
+
+  document.querySelector(`.dots__dot[data-slide="${slide}"]`).classList.add('dots__dot--active');
+};
+
+
+
+// Add event listener to dot container, slide to corresponding slide, based on dot clicked
+dotsContainer.addEventListener('click', function(e){
+  if(e.target.classList.contains('dots__dot')) {
+    currentSlide = e.target.dataset.slide;
+    goToSlide(currentSlide);
+  }
+
+  activateDot(currentSlide);
+});
+
+// Initialize slider
+const init = function(){
+  goToSlide(0);
+  createDots();
+  activateDot(0);
+};
+init();

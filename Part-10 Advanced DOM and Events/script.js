@@ -519,7 +519,7 @@ const createDots = function(){
 
 
 
-// Keep track of which slide we're on via the dots
+// Keep track of which slide we're on via the dots, change color of dot to match current slide
 const activateDot = function(slide){
   document.querySelectorAll('.dots__dot').forEach((dot, i) => {
     dot.classList.remove('dots__dot--active');
@@ -547,3 +547,24 @@ const init = function(){
   activateDot(0);
 };
 init();
+
+
+// Life Cycle DOM Events Lecture
+console.log('Life Cycle DOM Events Lecture');
+
+// On DOM content loaded
+document.addEventListener('DOMContentLoaded', function(e){
+  console.log('HTML parsed and DOM tree built!');
+});
+
+// On load
+window.addEventListener('load', function(e){
+  console.log('Page fully loaded.', e);
+});
+
+// Ask if you're sure about reloading or closing a tab/window
+// window.addEventListener('beforeunload', function(e){
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// });

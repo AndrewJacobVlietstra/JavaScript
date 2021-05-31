@@ -255,7 +255,6 @@ console.log(h1.parentElement.children);
 
 
 // Build a tabbed component Lecture
-
 console.log('Build a tabbed component Lecture');
 
 const tabs = document.querySelectorAll('.operations__tab');
@@ -295,7 +294,6 @@ tabsContainer.addEventListener('click', function(e){
 
 
 // Passing arguments to Event Handlers Lecture
-
 console.log('Passing arguments to Event Handlers Lecture');
 
 // Menu fade animation
@@ -324,7 +322,6 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 
 
 // Sticky Navigation, Scroll Event Lecture
-
 console.log('Sticky Navigation, Scroll Event Lecture');
 
 // Sticky Navigation
@@ -345,7 +342,6 @@ const initialCoords = section1.getBoundingClientRect();
 
 
 // Intersection Observer API Lecture
-
 console.log('Intersection Observer API Lecture');
 
 // Sticky nav: via the intersection observer API
@@ -370,7 +366,7 @@ console.log(navHeight);
 
 function stickyNav(entries) {
   const [entry] = entries; // destructuring
-  console.log(entry);
+  // console.log(entry);
 
   if(!entry.isIntersecting) {
     nav.classList.add('sticky');
@@ -387,3 +383,39 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 
 headerObserver.observe(header);
+
+
+
+// Revealing elements on scroll Lecture
+console.log('Revealing elements on scroll Lecture');
+
+// Reveal sections (remove hidden class)
+// const allSections = document.querySelectorAll('.section');
+
+const revealSection = function(entries, observer){
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) {
+    return
+  } else {
+    entry.target.classList.remove('section--hidden');
+    observer.unobserve(entry.target);
+  }
+  
+};
+
+// when 20% of viewport intersects observed section, function will trigger
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.2, // 20% intersecting ratio needed to trigger function
+});
+
+allSections.forEach(function(section){
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+});
+
+
+// Lazy Loading Images Lecture
+console.log('Lazy Loading Images Lecture');

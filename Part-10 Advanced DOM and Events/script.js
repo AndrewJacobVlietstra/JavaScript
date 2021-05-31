@@ -412,7 +412,7 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 
 allSections.forEach(function(section){
   sectionObserver.observe(section);
-  section.classList.add('section--hidden');
+  // section.classList.add('section--hidden');
 });
 
 
@@ -424,13 +424,14 @@ const imgTargets = document.querySelectorAll('img[data-src]');
 
 const loadImg = function(entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
 
   if(!entry.isIntersecting) return;
 
   // Replace src with data-src
   entry.target.src = entry.target.dataset.src;
 
+  // When new image source is loaded, remove the blur filter class
   entry.target.addEventListener('load', function(){
     entry.target.classList.remove('lazy-img');
   });
@@ -443,3 +444,50 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
+
+
+
+// Building a Slider Component Lecture
+console.log('Building a Slider Component Lecture');
+
+const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+
+let currentSlide = 0;
+const maxSlide = slides.length;
+
+const slider = document.querySelector('.slider');
+slider.style.transform = 'scale(0.8)';
+slider.style.overflow = 'hidden';
+
+// 0%, 100%, 200%, 300% translated slides
+// slides.forEach((s, i) => s.style.transform = `translateX(${100 * i}%)`);
+
+const goToSlide = function(slide) {
+  slides.forEach((s, i) => s.style.transform = `translateX(${100 * (i - currentSlide)}%)`);
+};
+goToSlide(0);
+
+// Next slide
+const nextSlide = function(){
+  if(currentSlide == maxSlide - 1) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+
+  goToSlide(currentSlide);
+};
+
+// Previous slide
+const previousSlide = function(){
+  currentSlide--;
+  if(currentSlide < 0) {currentSlide = maxSlide - 1;}
+
+  goToSlide(currentSlide);
+};
+
+
+btnLeft.addEventListener('click', previousSlide);
+btnRight.addEventListener('click', nextSlide);

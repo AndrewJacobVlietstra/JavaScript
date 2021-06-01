@@ -11,7 +11,7 @@ const Person = function(firstName, birthYear) {
 };
 
 // 1. New {} is created
-// 2. Function is called, this keyword is assigned to the new {}
+// 2. Function is called, "this" keyword is assigned to the new {}
 // 3. Newly created {} is linked to the constructor function's prototype property
 // 4. Function automatically returns the {}
 const jonas = new Person('Jonas', 1991);

@@ -8,11 +8,13 @@ const Car = function(make, speed) {
 
 // Prototypal inheritance
 Car.prototype.accelerate = function() {
-    return this.speed += 10;
+    this.speed += 10;
+    return `The ${this.make} accelerated to ${this.speed} km/h`;
 };
 
 Car.prototype.brake = function() {
-    return this.speed -= 5;
+    this.speed -= 5;
+    return `The ${this.make} slowed down to ${this.speed} km/h`;
 };
 
 // Now the prototype object linked to all Car objects contains accelerate and brake methods

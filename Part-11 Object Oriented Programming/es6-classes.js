@@ -31,7 +31,7 @@ console.log(jessica.__proto__ === PersonCl.prototype);
 
 // Another way of adding more methods to the linked prototype object
 PersonCl.prototype.depart = function() {
-    console.log(`Be seeing you ${this.firstName}`);
+    console.log(`See you later ${this.firstName}`);
 };
 
 jessica.calcAge();

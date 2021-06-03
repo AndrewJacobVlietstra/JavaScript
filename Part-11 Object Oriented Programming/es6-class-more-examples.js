@@ -31,7 +31,6 @@ class Account {
             console.log(`Loan approved!`);
         }
     }
-
 };
 
 const acc1 = new Account('Jonas', 'EUR', 1111);

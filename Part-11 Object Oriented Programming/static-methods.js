@@ -35,5 +35,5 @@ const andrew = new Test('Andrew', 25);
 
 console.log(andrew);
 console.log(andrew.greet());
-// console.log(andrew.hey()); // will throw error, andrew.hey is not a function
+// console.log(andrew.hey()); // will throw error, andrew.hey is not a function of instanced object
 console.log(Test.hey());

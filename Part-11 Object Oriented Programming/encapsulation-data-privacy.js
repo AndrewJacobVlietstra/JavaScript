@@ -35,10 +35,12 @@ class Account2 {
 
     deposit(val) {
         this.#movements.push(val);
+        return this;
     }
 
     withdraw(val) {
         this.deposit(-val);
+        return this;
     }
 
     requestLoan(val) {
@@ -46,6 +48,7 @@ class Account2 {
             this.deposit(val);
             console.log(`Loan approved!`);
         }
+        return this;
     }
 
     // Static methods are not available on instances, only on the class itself

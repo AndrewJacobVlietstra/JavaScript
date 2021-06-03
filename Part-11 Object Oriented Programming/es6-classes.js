@@ -38,7 +38,7 @@ jessica.calcAge();
 jessica.greet();
 jessica.depart();
 
-
-// 1. Classes are NOT hoisted, even if declared
-// 2. Classes are first-class citizens
-// 3. Classes are executed in strict mode
+// 1. Classes are "syntactic sugar" over constructor functions
+// 2. Classes are NOT hoisted, even if declared
+// 3. Classes are first-class citizens
+// 4. Class body is always executed in strict mode

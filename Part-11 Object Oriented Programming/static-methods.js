@@ -11,6 +11,8 @@ console.log(Array.from(document.querySelectorAll('h1')));
 // like parseFloat with the Number constructor or from with the Array constructor
 
 class Test {
+    static birthYear = 1990;
+
     constructor (firstName, age) {
         this.firstName = firstName;
         this.age = age;
@@ -23,8 +25,9 @@ class Test {
     }
 
     // Static method, only usable by the constructor / class, not shared to instanced objects
+    // can only access static properties and static methods, not instanced ones
     static hey() {
-        return `Hey there ✋`; // "this" keyword will point back to Test class if used here
+        return `Hey there ✋ you are ${2021 - this.birthYear} years old!`; // "this" keyword will point back to Test class if used here
     }
 };
 

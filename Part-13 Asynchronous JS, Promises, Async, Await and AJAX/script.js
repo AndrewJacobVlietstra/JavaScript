@@ -62,7 +62,21 @@ const getCountryDataAndNeighbour = function(country){
 
 // getCountryDataAndNeighbour('canada');
 // getCountryDataAndNeighbour('usa');
-getCountryDataAndNeighbour('portugal');
+// getCountryDataAndNeighbour('portugal');
 // getCountryDataAndNeighbour('africa');
 
 
+// Promises and Fetch API Lecture
+console.log('Promises and Fetch API Lecture');
+
+// Converting this to fetch with promises, to avoid callback hell
+// const request = new XMLHttpRequest();
+// request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`); // looking by country name
+// request.send();
+
+const request = fetch('https://restcountries.eu/rest/v2/name/portugal'); // builds and returns a promise
+console.log(request);
+
+// Promises start out as "Pending", after async task has finished in background the promise is then "Settled"
+// From this point on the promise can successfully return the data, this is called a "Fulfilled" promise
+// if the the promise fails, it is then considered a "Rejected" promise.

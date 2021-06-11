@@ -34,14 +34,14 @@ const getCountryDataAndNeighbour = function(country){
     request.addEventListener('load', function(){
         // console.log(this); //returns object with response property in JSON format
         const [data] = JSON.parse(this.responseText); // convert JSON back to an object
-        // console.log(data);
+        console.log(data);
 
         // Render country 1
         renderCountry(data);
 
         // Get neighbour country 2
         const [neighbour] = data.borders
-        console.log(neighbour);
+        // console.log(neighbour);
         if(!neighbour) return;
 
         // AJAX Call Country 2
@@ -52,7 +52,7 @@ const getCountryDataAndNeighbour = function(country){
         request2.addEventListener('load', function(){
             // console.log(this);
             const data2 = JSON.parse(this.responseText);
-            console.log(data2);
+            // console.log(data2);
 
             // Render country 2 on screen
             renderCountry(data2, 'neighbour');
@@ -60,7 +60,7 @@ const getCountryDataAndNeighbour = function(country){
     });
 };
 
-// getCountryDataAndNeighbour('canada');
+getCountryDataAndNeighbour('canada');
 // getCountryDataAndNeighbour('usa');
 // getCountryDataAndNeighbour('portugal');
 // getCountryDataAndNeighbour('africa');
@@ -104,4 +104,4 @@ const getCountryData = function(country) {
             .then(data => renderCountry(data, 'neighbour'));
         });
 };
-getCountryData('portugal');
+// getCountryData('portugal');

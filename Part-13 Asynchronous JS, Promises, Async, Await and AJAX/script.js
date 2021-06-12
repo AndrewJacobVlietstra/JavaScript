@@ -60,7 +60,7 @@ const getCountryDataAndNeighbour = function(country){
     });
 };
 
-getCountryDataAndNeighbour('canada');
+// getCountryDataAndNeighbour('canada');
 // getCountryDataAndNeighbour('usa');
 // getCountryDataAndNeighbour('portugal');
 // getCountryDataAndNeighbour('africa');
@@ -104,4 +104,8 @@ const getCountryData = function(country) {
             .then(data => renderCountry(data, 'neighbour'));
         });
 };
-// getCountryData('portugal');
+
+btn.addEventListener('click', function(){
+    getCountryData('portugal');
+});
+

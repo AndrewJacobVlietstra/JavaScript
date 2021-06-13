@@ -8,6 +8,11 @@ const countriesContainer = document.querySelector('.countries');
 // First AJAX call Lecture
 console.log('First AJAX call Lecture');
 
+const renderError = function(msg) {
+    countriesContainer.insertAdjacentText('beforeend', msg);
+    // countriesContainer.style.opacity = 1;
+};
+
 const renderCountry = function(data, className = ''){
     const html = `
         <article class="country ${className}">
@@ -22,7 +27,7 @@ const renderCountry = function(data, className = ''){
         </article>
         `;
         countriesContainer.insertAdjacentHTML('beforeend', html);
-        countriesContainer.style.opacity = 1;
+        // countriesContainer.style.opacity = 1;
 };
 
 const getCountryDataAndNeighbour = function(country){
@@ -100,8 +105,15 @@ const getCountryData = function(country) {
 
             // Country 2
             return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`)
-            .then(response => response.json())
-            .then(data => renderCountry(data, 'neighbour'));
+            .then(response => response.json()) // then is called only when promise is fulfilled
+            .then(data => renderCountry(data, 'neighbour')) 
+            .catch(err => { // catch is only called when promise is rejected
+                console.error(`${err} 💥💥💥`);
+                renderError(`Something went wrong 💥💥 '${err.message}'. Please try again!`);
+            })
+            .finally(() => { // finally will be called regardless if promise is fulfilled or rejected
+                countriesContainer.style.opacity = 1;
+            });
         });
 };
 
@@ -109,3 +121,4 @@ btn.addEventListener('click', function(){
     getCountryData('portugal');
 });
 
+getCountryData('jishdfuihgidfjub');

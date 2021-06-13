@@ -92,33 +92,46 @@ console.log('Promises and Fetch API Lecture');
 //             renderCountry(data[0]);
 //         });
 // };
+
+const getJSON = function(url, errorMsg = 'Something went wrong'){
+    return fetch(url)
+    .then(response => {
+        if(!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+        return response.json();
+    });
+};
+
 // Same thing as above but using arrow functions and simpler code
 const getCountryData = function(country) {
     // Country 1
-    fetch(`https://restcountries.eu/rest/v2/name/${country}`)
-        .then(response => response.json())
+
+    getJSON(`https://restcountries.eu/rest/v2/name/${country}`, 'Country not found')
         .then(data => {
             renderCountry(data[0]);
             const neighbour = data[0].borders[0];
+            console.log(neighbour);
 
-            if(!neighbour) return;
+            if(!neighbour) throw new Error('No neighbour found!');
 
             // Country 2
-            return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`)
-            .then(response => response.json()) // then is called only when promise is fulfilled
-            .then(data => renderCountry(data, 'neighbour')) 
-            .catch(err => { // catch is only called when promise is rejected
-                console.error(`${err} 💥💥💥`);
-                renderError(`Something went wrong 💥💥 '${err.message}'. Please try again!`);
-            })
-            .finally(() => { // finally will be called regardless if promise is fulfilled or rejected
-                countriesContainer.style.opacity = 1;
-            });
+            return getJSON(`https://restcountries.eu/rest/v2/alpha/${neighbour}`, 'Country not found')
+        })
+        // then is called only when promise is fulfilled
+        .then(data => renderCountry(data, 'neighbour'))
+        // catch is only called when promise is rejected
+        .catch(err => {
+            console.error(`${err} 💥💥💥`);
+            renderError(`Something went wrong 💥💥 '${err.message}'. Please try again!`);
+        })
+        // finally will be called regardless if promise is fulfilled or rejected
+        .finally(() => {
+            countriesContainer.style.opacity = 1;
         });
+        
 };
 
 btn.addEventListener('click', function(){
     getCountryData('portugal');
 });
 
-getCountryData('jishdfuihgidfjub');
+getCountryData('australia');

@@ -155,5 +155,27 @@ function whereAmI(lat, lng) {
 
 // whereAmI('43.651070', '-79.347015'); // Toronto, Canada
 // whereAmI('52.508', '13.381'); // Berlin, Germany
-// whereAmI('19.037', '72.873'); // Mumbai India
+// whereAmI('19.076', '72.877'); // Mumbai, India
 // whereAmI('-33.933', '18.474'); // Cape Town, South Africa
+
+
+// EVENT LOOP IN PRACTICE LECTURE
+console.log('EVENT LOOP IN PRACTICE LECTURE');
+
+
+console.log('Test Start');
+
+// Gets placed in callback queue
+setTimeout(() => console.log('0 second timer'), 0);
+
+// Gets placed in micro-tasks queue, has priority over callback queue
+Promise.resolve('Resolved Promise 1')
+    .then(response => console.log(response));
+
+Promise.resolve('Resolved Promise 2')
+    .then(response => {
+        for (let i = 0; i < 2000000000; i++) {}
+        console.log(response);
+    });
+
+console.log('Test End');

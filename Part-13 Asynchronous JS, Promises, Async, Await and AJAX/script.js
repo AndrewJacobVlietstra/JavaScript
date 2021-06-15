@@ -202,7 +202,6 @@ Promise.reject(new Error('Problem!')).catch(x => console.error(x));
 console.log('PROMISIFYING THE GEOLOCATION API LECTURE');
 
 
-
 const getPosition = function() {
     return new Promise(function(resolve, reject) {
         // navigator.geolocation.getCurrentPosition(
@@ -214,7 +213,8 @@ const getPosition = function() {
 };
 getPosition().then(position => console.log(position));
 
-
+// then basically handles the resolved value of the promise and what to do with the result
+// catch basically handles the rejection of the promise and what to do with the error
 function whereAmI2() {
     getPosition()
         .then(position => {
@@ -222,7 +222,7 @@ function whereAmI2() {
             return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
         })
         .then(response => {
-            if(!response.ok) throw new Error(`Could not get a response! ${response.status}`); // rejects promise
+            if(!response.ok) throw new Error(`Could not get a response! ${response.status}`); // rejects promise if no response
             return response.json();
         })
         .then(data => {
@@ -234,3 +234,18 @@ function whereAmI2() {
 
 btn.addEventListener('click', whereAmI2);
 
+
+// ASYNC / AWAIT LECTURE
+console.log('ASYNC / AWAIT LECTURE');
+
+// An async function is non-blocking, running in the background
+const whereAmI3 = async function(country) {
+    // fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+    //     .then(response => console.log(response))
+
+    // await will wait til this action is done, before proceeding to execute the next line
+    const response = await fetch(`https://restcountries.eu/rest/v2/name/${country}`);
+    const data = await response.json();
+    renderCountry(data[0]);
+};
+whereAmI3('portugal');

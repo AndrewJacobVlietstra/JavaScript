@@ -130,9 +130,9 @@ const getCountryData = function(country) {
         
 };
 
-btn.addEventListener('click', function(){
-    getCountryData('portugal');
-});
+// btn.addEventListener('click', function(){
+//     getCountryData('portugal');
+// });
 
 // getCountryData('australia');
 
@@ -217,3 +217,41 @@ wait(2)
 // Immediatley resolve or reject a promise
 Promise.resolve('abc').then(x => console.log(x));
 Promise.reject(new Error('Problem!')).catch(x => console.error(x));
+
+
+// PROMISIFYING THE GEOLOCATION API LECTURE
+console.log('PROMISIFYING THE GEOLOCATION API LECTURE');
+
+
+
+const getPosition = function() {
+    return new Promise(function(resolve, reject) {
+        // navigator.geolocation.getCurrentPosition(
+        //     position => resolve(position), 
+        //     err => reject(err)
+        //     );
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+};
+
+getPosition()
+    .then(position => console.log(position));
+
+function whereAmI2() {
+    getPosition()
+        .then(position => {
+            const {latitude: lat, longitude: lng} = position.coords;
+            return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+        })
+        .then(response => {
+            if(!response.ok) throw new Error(`Could not get a response! ${response.status}`); // rejects promise
+            return response.json();
+        })
+        .then(data => {
+            console.log(`You are in: ${data.city}, ${data.country}.`);
+            getCountryData(`${data.country}`);
+        })
+        .catch(err => console.error(`${err.message}`)); // catches the rejected promise and handles it
+};
+
+btn.addEventListener('click', whereAmI2);

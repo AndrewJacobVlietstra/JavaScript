@@ -144,10 +144,10 @@ console.log('EVENT LOOP IN PRACTICE LECTURE');
 
 console.log('Test Start');
 
-// Gets placed in callback queue
+// Asynchronous things get placed in callback queue
 setTimeout(() => console.log('0 second timer'), 0);
 
-// Gets placed in micro-tasks queue, has priority over callback queue
+// Promises get placed in micro-tasks queue, has priority over callback queue
 Promise.resolve('Resolved Promise 1')
     .then(response => console.log(response));
 

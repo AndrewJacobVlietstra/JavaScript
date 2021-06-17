@@ -111,6 +111,7 @@ body {
 
 .images {
   display: flex;
+  flex-direction: column;
 }
 
 .images img {

@@ -6,13 +6,13 @@ async function loadNPause() {
         let img = await createImg('img/img-1.jpg');
         console.log('Image 1 Loaded');
         await wait(2);
-        currentImg.style.display = 'none';
+        img.style.display = 'none';
 
         // Image 2
         img = await createImg('img/img-2.jpg');
         console.log('Image 2 Loaded');
         await wait(2);
-        currentImg.style.display = 'none';
+        img.style.display = 'none';
     } 
     
     catch (err) {

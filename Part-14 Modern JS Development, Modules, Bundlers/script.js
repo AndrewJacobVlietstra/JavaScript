@@ -12,7 +12,9 @@ console.log('Importing Module');
 
 
 
-// include a "type": "module", line in the package.json file
+// include a "type": "module", line in the package.json file to prevent error
+// never copy the node modules folder when copying your project, just use 'npm install' command in terminal
+// to install necessary dependencies from your package.json file
 import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
 
 const state = {

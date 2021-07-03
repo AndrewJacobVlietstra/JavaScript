@@ -1,3 +1,4 @@
+'use strict';
 // console.log(5); // dot notation of calling object properties
 // console["log"](5); // square bracket notation
 

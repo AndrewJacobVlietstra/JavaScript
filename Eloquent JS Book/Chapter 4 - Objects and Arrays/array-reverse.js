@@ -1,6 +1,6 @@
 let testArr = [1, 2, 3, 4, 5];
 
-// this function will return a new array but with the elements of the original array reversed
+// this function returns a new array, with reversed elements
 function reverseArray(arr) {
     let newArr = [];
 
@@ -16,7 +16,7 @@ console.log(reversedArr1);
 // console.log(testArr == reversedArr1); // "false" because this function returns a new array with different reference variable
 
 
-// this function will reverse an array and return a reference to the same array
+// this function modifies the array passed to it and reverses it (destructive behaviour)
 function reverseArrayInPlace(arr) {
     let length = arr.length; // initialize length or array before reversing it
 

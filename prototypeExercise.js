@@ -1,7 +1,6 @@
 // Add a new method to the Date prototype object that returns last year from a given year
 Date.prototype.lastYear = function() {
-    let dateYear = this.getFullYear();
-    return dateYear - 1;
+    return this.getFullYear() - 1;
 }
 
 console.log(new Date('1900-10-10').lastYear());
@@ -17,3 +16,23 @@ Array.prototype.map = function() {
 }
 
 console.log([1, 2, 3].map());
+
+
+
+// Create your own bind method
+Function.prototype.myBind = function(refObject, ...args) {
+    const fn = this;
+    return function() {
+        fn.call(refObject, args);
+    }
+}
+
+const obj1 = {
+    x: 42,
+    getX: function() {
+      return this.x;
+    }
+};
+
+const unboundFunc = obj1.getX.bind(obj1);
+console.log(unboundFunc());

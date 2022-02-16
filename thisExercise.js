@@ -16,7 +16,7 @@ let myObj = {
   },
 
   // In this case it starts in the arrow function, no "this" context can be found, so it goes up to the regular function scope of "whatIsThisNested"
-  // and finds a "this" context, which refers back to myObj
+  // and finds a "this" context, which refers back to the object which calls this method
   whatIsThisNested() {
     return () => this;
   }

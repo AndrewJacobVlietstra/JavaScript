@@ -1,7 +1,7 @@
 function findMaxNumber(array) {
   if (!Array.isArray(array)) { return `Input must be of type 'Array'`; }
 
-  let currentMax = 0;
+  let currentMax = array[0];
   for (let i = 0; i < array.length; i++) {
     if (currentMax < array[i]) {
       currentMax = array[i];

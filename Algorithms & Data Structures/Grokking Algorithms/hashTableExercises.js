@@ -95,6 +95,8 @@ function firstNonDuplicate(str) {
   for (const letter in store) {
     if (store[letter] === 1) { return letter; }
   }
+
+  return 'Non-duplicates not found!';
 };
 
 log(firstNonDuplicate('minimum'));

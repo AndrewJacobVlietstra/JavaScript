@@ -1,7 +1,7 @@
 // Create a stack, which is an abstract data structure, its an array that can only push, pop and read from the end of the stack
 class stack {
-  constructor() {
-    this.data = [];
+  constructor(arr) {
+    this.data = [...arr];
   }
 
   stackPush(payload) {
@@ -17,15 +17,12 @@ class stack {
   }
 }
 
-const stack1 = new stack();
+const stack1 = new stack([1, 2, 3, 4, 5]);
+// console.log(stack1);
 
-stack1.stackPush(1);
-stack1.stackPush(2);
-stack1.stackPush(3);
-stack1.stackPush(4);
+// Write a function that can reverse an array of elements using the stack implementation
+function stackReverse(stack) {
+  console.log(stack);
+}
 
-stack1.stackPop();
-console.log(stack1.stackRead());
-
-
-console.log(stack1);
+stackReverse(stack1);

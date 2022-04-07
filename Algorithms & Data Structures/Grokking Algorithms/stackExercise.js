@@ -25,16 +25,23 @@ const stack2 = new stack([]);
 function stackReverse(stackParam) {
   // Capture Initial length of stack
   const stackLength = stackParam.data.length;
-  // Initialize an empty temporary stack for this function
-  const tempStack = new stack([]);
 
-  // Pop all stack elements and then add them to tempStack, but in reverse order
+  // Initialize an empty temporary store for this function
+  const store = [];
+
+  // Pop all stack elements and then add them to temporary store, but in reverse order
   for (let i = 0; i < stackLength; i++) {
-    tempStack.stackPush(stackParam.stackPop());
+    store.push(stackParam.stackPop());
   }
 
-  // Return the data in reverse order
-  return tempStack;
+  // Loop through store and push values back to stack, now stack will contain all values but in reverse order
+  for (let i = 0; i < store.length; i++) {
+    stackParam.stackPush(store[i]);
+  }
+
+  // Return the original stack with data now in reverse order, data has been mutated to be in reverse order
+  return stackParam;
 }
 
 console.log(stackReverse(stack1));
+console.log(stack1);

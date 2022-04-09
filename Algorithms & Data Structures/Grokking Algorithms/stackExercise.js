@@ -19,6 +19,7 @@ class stack {
 
 const stack1 = new stack([1, 2, 3, 4, 5]);
 const stack2 = new stack([]);
+const stack3 = new stack(['a', 'b', 'c', 'd', 'e']);
 // console.log(stack1);
 
 // Write a function that can reverse an array of elements using the stack implementation
@@ -43,5 +44,5 @@ function stackReverse(stackParam) {
   return stackParam;
 }
 
-console.log(stackReverse(stack1));
-console.log(stack1);
+console.log(stackReverse(stack3));
+console.log(stack3);

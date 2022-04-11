@@ -1,10 +1,7 @@
 function factorial(number) {
   if (typeof number !== 'number') { return 'Input must be of type number'; }
-  if (number < 0) { return 'Input must be greater than 0'; }
+  if (number < 1) { return 'Input must be greater than 1'; }
 
-  if (number === 0) {
-    return 0;
-  }
   if (number === 1) {
     return 1;
   }

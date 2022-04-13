@@ -23,11 +23,11 @@ function sum(low, high) {
 
 const nestedArray = [1, 2, 3, [4, 5, 6], 7, [8, [9, 10, 11, [12, 13, 14]]]];
 
-// Write a function that can traverse an arbitrarily deeply nested array of elements
+// Write a function that can traverse an arbitrarily deeply nested array of elements and other arrays
 function traverse(arr) {
   arr.forEach((value) => {
 
-    // If the value itself is an array, call traverse on it
+    // If the value itself is an array, call traverse on it to read the values in each sub-array
     if (Array.isArray(value)) {
       return traverse(value);
     }
@@ -37,4 +37,4 @@ function traverse(arr) {
   })
 };
 
-traverse(nestedArray);
+// traverse(nestedArray);

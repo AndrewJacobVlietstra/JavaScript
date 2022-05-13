@@ -1,7 +1,7 @@
 // Log function
 const log = (x) => console.log(x);
 
-// Intersection function, compare two array and return a third array that contains similar values from the first two arrays
+// Intersection function, compare two arrays and return a third array that contains similar values from the first two arrays
 function calcIntersection(arr1, arr2) {
   // Initialize array to store intersection values
   const intersection = []
